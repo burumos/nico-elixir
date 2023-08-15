@@ -1,0 +1,25 @@
+<.header class="text-center">
+  nico/search
+  <%!-- <:subtitle>subtitle</:subtitle> --%>
+</.header>
+
+<div class="space-y-12 divide-y">
+  <div>
+    <.simple_form method="get" :let={f} for={@conn.params} action={~p"/nico/search"} id="search_nico">
+      <.input field={f[:word]} type="text" name="word" label="word" />
+      <.input field={f[:limit]} type="number" name="limit" label="show limit" />
+      <.input field={f[:minimum_views]} type="number" name="minimum_views" label="minimum views" />
+
+      <:actions>
+        <.button class="w-full">send</.button>
+      </:actions>
+
+    </.simple_form>
+  </div>
+
+  <div>
+    <%= for video <- @videos do  %>
+      <div><%= video["title"] %></div>
+    <% end %>
+  </div>
+</div>
