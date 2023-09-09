@@ -9,6 +9,8 @@ defmodule Nico.Accouts.User do
     field :confirmed_at, :naive_datetime
 
     timestamps()
+
+    has_many :nico_search_conditions, Nico.Search.NicoSearchCondition
   end
 
   @doc """

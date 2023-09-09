@@ -68,6 +68,8 @@ defmodule NicoWeb.Router do
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
     get "/nico/search", NicoController, :search
+    post "/nico/search/cond", NicoController, :create_cond
+    post "/nico/search/cond/delete", NicoController, :delete_cond
   end
 
   scope "/", NicoWeb do
