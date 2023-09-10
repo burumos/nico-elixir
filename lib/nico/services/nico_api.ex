@@ -3,10 +3,27 @@ defmodule Nico.Services.NicoApi do
   import Nico.Services.Helper
 
   def search(params) do
-    case fetch(generate_params_map(params)) do
-      %{ "data" => data } -> data
+    case fetch_by_params(params) do
+      %{ "data" => data } -> convert_videos(data)
       _ -> []
     end
+  end
+
+  def bulk_fetch() do
+    [
+      %{"word" => "mtg -mtga -mtgアリーナ",  "limit" => 5, "minimum_views" => 300},
+      %{"word" => "sims -MMD -MikuMikuDance",  "limit" => 5, "minimum_views" => 100},
+      %{"word" => "cities:skylines",  "limit" => 5, "minimum_views" => 500},
+      %{"word" => "ets2 -MMD -切り抜き",  "limit" => 5, "minimum_views" => 100},
+    ]
+    |> Enum.map(fn condition -> search(condition) end)
+    |> List.flatten()
+  end
+
+  defp fetch_by_params(params) do
+    params
+    |> generate_params_map()
+    |> fetch()
   end
 
   defp generate_params_map(params) do
@@ -20,7 +37,7 @@ defmodule Nico.Services.NicoApi do
 
   defp fetch(params_list) do
     default_params = [
-      q: "UTAU オリジナル",
+      q: "",
       targets: "title,tags,description",
       _context: "private-nk.ex",
       _sort: "-startTime",
@@ -34,9 +51,23 @@ defmodule Nico.Services.NicoApi do
     )
 
     url
-    |> IO.inspect() # debug
+    # |> IO.inspect() # debug
     |> URI.encode()
     |> Req.get!()
     |> Map.get(:body)
+  end
+
+  defp convert_videos(videos) do
+    Enum.map(videos, fn video -> %{
+      "content_id" => video["contentId"],
+      "title" => video["title"],
+      "thumbnail_url" => video["thumbnailUrl"],
+      "start_time" => video["startTime"],
+      "length_seconds" => video["lengthSeconds"],
+      "comment_counter" => video["commentCounter"],
+      "like_counter" => video["likeCounter"],
+      "mylist_counter" => video["mylistCounter"],
+      "view_counter" => video["viewCounter"],
+    } end)
   end
 end

@@ -70,6 +70,8 @@ defmodule NicoWeb.Router do
     get "/nico/search", NicoController, :search
     post "/nico/search/cond", NicoController, :create_cond
     post "/nico/search/cond/delete", NicoController, :delete_cond
+    get "/nico/bulk", NicoController, :show_bulk_set
+    post "/nico/bulk", NicoController, :fetch_bulk
   end
 
   scope "/", NicoWeb do

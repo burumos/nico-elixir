@@ -11,6 +11,7 @@ defmodule Nico.Accouts.User do
     timestamps()
 
     has_many :nico_search_conditions, Nico.Search.NicoSearchCondition
+    has_many :nico_videos, Nico.Search.NicoVideo, preload_order: [desc: :start_time]
   end
 
   @doc """

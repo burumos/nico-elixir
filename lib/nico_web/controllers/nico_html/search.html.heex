@@ -22,55 +22,8 @@
 
   <div>
     <%= for video <- @videos do  %>
-      <div class="flex pt-2">
-        <div>
-          <a href={"https://nico.ms/#{video["contentId"]}"} target="_blank" class="video-image-wrapper">
-            <img src={video["thumbnailUrl"]} style="min-width: 130px"  />
-            <span class="video-length"><%= NicoWeb.ViewHelpers.Nico.convert_length_seconds(video["lengthSeconds"]) %></span>
-          </a>
-        </div>
-        <div class="pl-1">
-          <div>
-            <a href={"https://nico.ms/#{video["contentId"]}"} target="_blank">
-              <%= video["title"] %>
-            </a>
-          </div>
-          <div>
-            投稿日: <%= NicoWeb.ViewHelpers.Nico.convert_datetime(video["startTime"]) %>
-          </div>
-          <div>
-            <span>
-              <i class="fa-regular fa-eye"></i>
-              <%= video["viewCounter"] %>
-            </span>
-            <span>
-              <i class="fa-regular fa-heart"></i>
-              <%= video["mylistCounter"] %>
-            </span>
-            <span>
-              <i class="fa-regular fa-thumbs-up"></i>
-              <%= video["likeCounter"] %>
-            </span>
-            <span>
-              <i class="fa-regular fa-comment"></i>
-              <%= video["commentCounter"] %>
-            </span>
-          </div>
-        </div>
-      </div>
+      <NicoWeb.Nico.video video={video} />
     <% end %>
   </div>
 </div>
 <script id="nico-search-script-data" data-conditions={Jason.encode!(@conditions)}></script>
-
-<style>
-  .video-image-wrapper {
-    position: relative;
-  }
-  .video-image-wrapper .video-length {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-  }
-</style>

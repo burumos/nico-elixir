@@ -7,12 +7,15 @@ defmodule NicoWeb.ViewHelpers.Nico do
     "#{minutes}:" <> String.pad_leading(Integer.to_string(remainder), 2, "0")
   end
 
-  def convert_datetime(date_string) do
+  def convert_datetime(date_string) when is_binary(date_string) do
     case Timex.parse(date_string, "{ISO:Extended}") do
       {:ok, datetime} -> datetime2str(datetime)
       _ -> "pe:" <> date_string
     end
+  end
 
+  def convert_datetime(datetime) do
+    datetime2str(datetime)
   end
 
   def datetime2str(datetime) do
