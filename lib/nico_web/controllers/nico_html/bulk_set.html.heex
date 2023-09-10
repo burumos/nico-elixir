@@ -1,0 +1,19 @@
+<.header class="text-center">
+  nico/bulk
+</.header>
+
+<div class="space-y-12 divide-y">
+  <div>
+    <.simple_form :let={_} for={@conn.params} action={~p"/nico/bulk"}>
+      <:actions>
+        <.button>fetch</.button>
+      </:actions>
+    </.simple_form>
+  </div>
+  
+  <div>
+    <%= for video <- @videos do  %>
+      <NicoWeb.Nico.video video={video} />
+    <% end %>
+  </div>
+</div>

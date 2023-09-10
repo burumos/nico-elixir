@@ -1,0 +1,29 @@
+<.header class="text-center">
+  nico/search
+  <%!-- <:subtitle>subtitle</:subtitle> --%>
+</.header>
+
+<div class="space-y-12 divide-y">
+  <div>
+    <.simple_form method="get" :let={f} for={@conn.params} action={~p"/nico/search"} id="search_nico">
+      <.input field={f[:word]} type="text" name="word" label="word" />
+      <.input field={f[:limit]} type="number" name="limit" label="show limit" />
+      <.input field={f[:minimum_views]} type="number" name="minimum_views" label="minimum views" />
+
+      <:actions>
+        <.button>search</.button>
+        <.button type="button" class="save-cond-btn text-red-300" id="save-btn">save</.button>
+      </:actions>
+
+    </.simple_form>
+  </div>
+  
+  <ul id="search-conditions"></ul>
+
+  <div>
+    <%= for video <- @videos do  %>
+      <NicoWeb.Nico.video video={video} />
+    <% end %>
+  </div>
+</div>
+<script id="nico-search-script-data" data-conditions={Jason.encode!(@conditions)}></script>

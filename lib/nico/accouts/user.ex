@@ -9,6 +9,9 @@ defmodule Nico.Accouts.User do
     field :confirmed_at, :naive_datetime
 
     timestamps()
+
+    has_many :nico_search_conditions, Nico.Search.NicoSearchCondition
+    has_many :nico_videos, Nico.Search.NicoVideo, preload_order: [desc: :start_time]
   end
 
   @doc """
