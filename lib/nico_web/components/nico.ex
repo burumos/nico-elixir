@@ -1,5 +1,5 @@
 defmodule NicoWeb.Nico do
-  use Phoenix.Component
+  use NicoWeb, :html
 
   def video(assigns) do
     ~H"""
@@ -46,5 +46,16 @@ defmodule NicoWeb.Nico do
 
   defp get(map, atom) do
     Map.get(map, atom) || Map.get(map, to_string(atom))
+  end
+
+  def header_nav(assigns) do
+    ~H"""
+      <nav>
+        <ul class="flex">
+          <li class="px-2 border rounded-md"><.link href={~p"/nico/search"}>search</.link></li>
+          <li class="px-2 border rounded-md"><.link href={~p"/nico/bulk"}>bulk</.link></li>
+        </ul>
+      </nav>
+    """
   end
 end
