@@ -12,7 +12,11 @@
       </:actions>
     </.simple_form>
   </div>
-  
+
+  <%= if !Enum.empty?(@videos) do %>
+    <p>last update: <NicoWeb.Nico.last_update videos={@videos} /></p>
+  <% end %>
+
   <div>
     <%= for video <- @videos do  %>
       <NicoWeb.Nico.video video={video} />

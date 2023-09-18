@@ -58,4 +58,10 @@ defmodule NicoWeb.Nico do
       </nav>
     """
   end
+
+  def last_update(assigns) do
+    [video | _] = assigns.videos
+    assigns = assign(assigns, :video, video)
+    ~H"<%= NicoWeb.ViewHelpers.Nico.convert_datetime(get(@video, :inserted_at)) %>"
+  end
 end
