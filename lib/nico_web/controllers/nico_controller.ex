@@ -44,6 +44,8 @@ defmodule NicoWeb.NicoController do
     # |> NicoVideo.register_bulk_for_login_user(conn.assigns.current_user)
     |> Enum.each(fn video -> NicoVideo.register_for_login_user(video, user) end)
 
-    redirect(conn, to: "/nico/bulk")
+    conn
+    |> put_flash(:info, "更新しました!!")
+    |> redirect(to: "/nico/bulk")
   end
 end
