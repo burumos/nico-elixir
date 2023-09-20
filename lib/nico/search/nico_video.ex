@@ -13,7 +13,7 @@ defmodule Nico.Search.NicoVideo do
     field :mylist_counter, :integer
     field :like_counter, :integer
     field :comment_counter, :integer
-    timestamps()
+    timestamps([type: :utc_datetime])
 
     belongs_to :user, Nico.Accouts.User
   end
