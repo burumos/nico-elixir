@@ -11,7 +11,7 @@ defmodule Nico.Services.NicoApi do
 
   def bulk_fetch() do
     [
-      %{"word" => "mtg -mtga -mtgアリーナ",  "limit" => 5, "minimum_views" => 300},
+      %{"word" => "mtg -mtga -mtgアリーナ -MMD",  "limit" => 5, "minimum_views" => 300},
       %{"word" => "sims -MMD -MikuMikuDance",  "limit" => 5, "minimum_views" => 100},
       %{"word" => "cities:skylines",  "limit" => 5, "minimum_views" => 500},
       %{"word" => "ets2 -MMD -切り抜き",  "limit" => 5, "minimum_views" => 100},
