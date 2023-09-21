@@ -19,7 +19,8 @@ defmodule NicoWeb.ViewHelpers.Nico do
   end
 
   def datetime2str(datetime) do
-    case Timex.format(datetime, "{YYYY}-{0M}-{0D} {h24}:{0m}") do
+    jpDatetime = Timex.to_datetime(datetime, "Asia/Tokyo")
+    case Timex.format(jpDatetime, "{YYYY}-{0M}-{0D} {h24}:{0m}") do
       {:ok, str} -> str
       _ -> "fe"
     end

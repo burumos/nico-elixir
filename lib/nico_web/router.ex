@@ -20,7 +20,7 @@ defmodule NicoWeb.Router do
   scope "/", NicoWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
@@ -62,6 +62,8 @@ defmodule NicoWeb.Router do
 
   scope "/", NicoWeb do
     pipe_through [:browser, :require_authenticated_user]
+
+    get "/", PageController, :home
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
