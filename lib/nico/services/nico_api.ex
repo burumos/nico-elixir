@@ -38,7 +38,7 @@ defmodule Nico.Services.NicoApi do
   defp fetch(params_list) do
     default_params = [
       q: "",
-      targets: "title,tags,description",
+      targets: "title,tags",
       _context: "private-nk.ex",
       _sort: "-startTime",
       _limit: "10",
