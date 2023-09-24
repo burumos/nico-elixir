@@ -19,9 +19,6 @@ defmodule NicoWeb.Nico do
             </a>
           </div>
           <div>
-            投稿日: <%= NicoWeb.ViewHelpers.Nico.convert_datetime(get(@video, :start_time)) %>
-          </div>
-          <div>
             <span>
               <i class="fa-regular fa-eye"></i>
               <%= get(@video, :view_counter) %>
@@ -38,6 +35,9 @@ defmodule NicoWeb.Nico do
               <i class="fa-regular fa-comment"></i>
               <%= get(@video, :comment_counter) %>
             </span>
+          </div>
+          <div>
+            投稿日: <%= NicoWeb.ViewHelpers.Nico.convert_datetime(get(@video, :start_time)) %>
           </div>
         </div>
       </div>
