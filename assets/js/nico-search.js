@@ -1,5 +1,5 @@
 import van from '../vendor/van.js'
-const { div, button, li } = van.tags;
+const { div, button, li, i, span } = van.tags;
 
 function CondRow(cond) {
     const handleSearch = () => search(cond);
@@ -15,11 +15,19 @@ function CondRow(cond) {
         {class: "search-cond mt-3"},
         [
             button({ class: "mr-4 border-2 rounded-md px-2", onclick: handleSearch }, 'search'),
-            ['word', 'limit', 'minimum_views']
-                .map(key => [key, cond[key]])
-                .filter(([_, v]) => v !== null)
-                .map(([k, v]) => `${k}: ${v}`)
-                .join(', '),
+            span({}, [
+                li({ class: 'fa-solid fa-magnifying-glass' }),
+                ' : ',
+                cond.word,
+                ' , ',
+                li({ class: 'fa-solid fa-arrows-up-to-line' }),
+                ' : ',
+                cond.limit,
+                ' , ',
+                li({ class: 'fa-regular fa-eye' }),
+                ' : ',
+                cond.minimum_views,
+            ]),
             button({ class: 'ml-2 border-2 rounded-md px-2', onclick: handleDelete}, 'delete')
         ]
     );
