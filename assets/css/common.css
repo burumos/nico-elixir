@@ -1,0 +1,24 @@
+body {
+    --main-bg-color: #1e1e1e;
+    --main-color: #eee;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+}
+
+[type='text'],
+[type='email'],
+[type='url'],
+[type='password'],
+[type='number'],
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='week'],
+[multiple],
+textarea,
+select {
+    background-color: var(--main-bg-color);
+}
