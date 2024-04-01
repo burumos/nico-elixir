@@ -46,7 +46,7 @@ defmodule Nico.Services.NicoApi do
     ]
     params = Keyword.merge(default_params, params_list)
     url = UrlGenerator.generate_get_url(
-      "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search",
+      "https://snapshot.search.nicovideo.jp/api/v2/snapshot/video/contents/search",
       params
     )
 
